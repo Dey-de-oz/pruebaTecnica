@@ -4,7 +4,7 @@
 @section('contenido')
     <div class="card">
         <div class="card-header">
-            Mostrar datos de usuario:{{ $personas->nombre }} 
+            Resultado de busqueda
         </div>
         <div class="card-body">
             <div class="table table-responsive">
@@ -17,11 +17,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{{ $personas->nombre }}</td>
-                            <td>{{ $personas->correo }}</td>
-                            <td>{{ $personas->fecha_nacimiento }}</td>
-                        </tr>
+                        @foreach ($usuarios as $item)
+                            <tr>
+                                <td>{{$item->nombre}}</td>
+                                <td>{{$item->correo}}</td>
+                                <td>{{$item->fecha_nacimiento}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

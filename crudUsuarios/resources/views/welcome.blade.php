@@ -73,10 +73,11 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form class="d-flex">
+            <form action="{{route('personas.search')}}" method="POST" class="d-flex">
+                @csrf
                 <label for="">Buscar por nombre</label>
-                <input class="form-control me-2" type="search" placeholder="Nombre de usuario" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre de usuario">
+                <button class="btn btn-outline-success">Buscar</button>
             </form>
         </div>
 
@@ -84,10 +85,11 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <form action="">
+            <form action="{{route('personas.range')}}" method="POST">
+                @csrf
                 <label for="">Buscar por rango de fechas</label>
-                <input type="date" name="fecha_ini" id="fecha_ini" class="form-control">
-                <input type="date" name="fecha_fin" id="fecha_fin" class="form-control">
+                <input type="date" name="fechaIni" id="fechaIni" class="form-control">
+                <input type="date" name="fechaFin" id="fechaFin" class="form-control">
                 <button class="btn btn-success">Buscar</button>
             </form>
         </div>

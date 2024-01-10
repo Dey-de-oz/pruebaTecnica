@@ -58,9 +58,22 @@ class PersonasController extends Controller
     {
         //Obtiene un solo registro de la tabla
         $personas = Personas::find($id);
-        return view('userView',compact('personas'));
+        return view('userView',compact('personas'));//Envia el objeto personas para su consulta en la vista
     }
-
+    public function searchByName(Request $request){
+        $nombre = $request->post('nombre');
+        $usuarios = Personas::where('nombre','like','%' . $nombre . '%')->get();
+        return view('usersByName',compact('usuarios'));
+        //print_r($_POST);
+    }
+    public function searchByRange(Request $request){
+        $fechaIni = $request->post('fechaIni');
+        $fechaFin =$request->post('fechaFin');
+        //Eloquent: Funcion que permite buscar uno o mas registros dentro de un rango especificado
+        $usuarios = Personas::whereBetween('fecha_nacimiento',[$fechaIni,$fechaFin])->get();//Cargamos las fechas limites
+        return view('usersByName',compact(['usuarios','fechaIni' ,'fechaFin']));//Se envian los datos a la vista
+        //print_r($_POST);
+    }
 
     public function edit($id)
     {
